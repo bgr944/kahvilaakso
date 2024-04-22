@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <title>Kaikki Kahvit</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-4">
+            <h1>Kaikki nautitut kahvit</h1>
+        </div>
+        <div class="col-md-4">
+            <h3><span sec:authentication="name"></span></h3>
+        </div>
+        <div class="col-md-4" style="padding:20px 0">
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+            </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nimi</th>
+                    <th>Kuvaus</th>
+                    <th>Alkuperä</th>
+                    <th>Paahtoaste</th>
+                    <th>Luomu</th>
+                    <th sec:authorize="hasAuthority('ADMIN')"> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="kahvi : ${kahvit}">
+                    <td>
+                        <a th:href="@{'/arvostelut/' + ${kahvi.kahviId}}">
+                            <span th:text="${kahvi.nimi}"></span>
+                        </a>
+                    </td>
+                    <td th:text="${kahvi.kuvaus}"></td>
+                    <td th:text="${kahvi.alkupera}"></td>
+                    <td th:text="${kahvi.paahtoaste}"></td>
+                    <td th:text="${kahvi.luomu ? 'Kyllä' : 'Ei'}"></td>
+                    <td sec:authorize="hasAuthority('ADMIN')">
+                        <a th:href="@{/delete/{id}(id=${kahvi.kahviId})}" class="btn btn-xs btn-danger">Delete</a>
+                    </td> 
+                    <td>
+                        <a th:href="@{/edit/{id}(id=${kahvi.kahviId})}" class="btn btn-info">Edit</a>
+                    </td>
+                    <td>
+                        <a th:href="@{/arvostele/{id}(id=${kahvi.kahviId})}" class="btn btn-primary">Arvostele</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/add" class="btn btn-success">Lisää kahvi</a>
+    </div>
+</body>
+</html>

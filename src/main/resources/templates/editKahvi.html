@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Kahvi</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+	<h1>Tämä kahvi</h1>
+	<div class="col-md-4">
+		<form th:object="${kahvi}" th:action="@{/save}" action="#" method="post">
+			<input type="text" th:field="${kahvi.nimi}" class="form-control"
+				placeholder="nimi" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="text" th:field="${kahvi.kuvaus}" class="form-control"
+				placeholder="kuvaus" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="text" th:field="${kahvi.alkupera}" class="form-control"
+				placeholder="alkupera" />
+			<div style="clear: both; display: block; height: 10px;"></div>	
+            <label for="paahtoaste" class="control-label">Paahtoaste</label>
+			<select th:field="${kahvi.paahtoaste}" class="form-control">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+            </select>
+            <div style="clear: both; display: block; height: 10px;"></div>	
+			<label for="luomu" class="control-label">Luomu</label>
+            <select th:field="${kahvi.luomu}" class="form-control">
+                <option value="true">Kyllä</option>
+                <option value="false">Ei</option>
+            </select>
+            <div style="clear: both; display: block; height: 10px;"></div>	
+			<input type="submit" name="action" class="btn btn-primary" value="Save"></input>
+			<input th:formaction="@{/cancel}" type="submit" name="action" class="btn btn-secondary" value="Peruuta"></input>
+            <input type="hidden" th:field="${kahvi.kahviId}" class="btn"> </input>
+		</form>
+	</div>
+</div>
+</body>
+</html>

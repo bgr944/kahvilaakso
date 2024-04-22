@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Arvostele Kahvi</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+	<h1>Miltä se kahvi maistui?</h1>
+	<div class="col-md-4">
+		<form th:action="@{/saveArvostelu}" method="post">
+			<input type="hidden" name="kahviId" th:value="${kahvi.kahviId}" />
+			<label for="kommentti">Arvostelu:</label>
+			<textarea th:field="${arvostelu.kommentti}" class="form-control" rows="4"></textarea>
+			<label for="arvosana">Arvosana:</label>
+			<select th:field="${arvostelu.arvosana}" class="form-control">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+			<input type="submit" class="btn btn-primary" value="Tallenna" />
+			<input type="submit" th:formaction="@{/cancel}" class="btn btn-secondary" value="Peruuta" />
+		</form>
+	</div>
+</div>
+</body>
+</html>

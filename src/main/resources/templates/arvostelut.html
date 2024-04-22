@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <title>Arvostelut</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" th:href="@{resources/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+    <div class="col-md-4">
+        <h1>Kahvin arvostelut</h1>
+    </div>
+    <div class="col-md-4">
+        <h3><span sec:authentication="name"></span></h3>
+    </div>
+    <div class="col-md-4" style="padding:20px 0">
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+        </form>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Arvostelija</th>
+            <th>Arvosana</th>
+            <th>Kommentti</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="arvostelu : ${arvostelut}">
+            <td th:text="${arvostelu.user.username}"></td>
+            <td th:text="${arvostelu.arvosana}"></td>
+            <td th:text="${arvostelu.kommentti}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/kaikkikahvit}" class="btn btn-primary">Takaisin</a>
+</div>
+</body>
+</html>
