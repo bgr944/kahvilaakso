@@ -6,7 +6,5 @@ import java.util.List;
 public interface ArvosteluRepository extends CrudRepository<Arvostelu, Long> {
     List<Arvostelu> findByUser(User user);
 
-    List<Arvostelu> findKahviByKahviId(Long kahviId);
-
-    List<Arvostelu> findArvostelutByKahviId(Long kahviId);
+    List<Arvostelu> findByKahviId(Long kahviId);
 }

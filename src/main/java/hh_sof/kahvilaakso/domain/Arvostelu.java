@@ -31,9 +31,6 @@ public class Arvostelu {
         this.kahvi = kahvi;
     }
 
-    public Long getKahviId() {
-        return kahvi != null ? kahvi.getKahviId() : null;
-    }
 
     public Long getId() {
         return id;

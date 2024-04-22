@@ -57,7 +57,7 @@ public class ArvosteluController {
     @RequestMapping("/arvostelut/{id}")
     public String getArvostelutForKahvi(@PathVariable("id") Long kahviId, Model model) {
         Kahvi kahvi = kahviRepository.findByKahviId(kahviId);
-        List<Arvostelu> arvostelut = arvosteluRepository.findKahviByKahviId(kahviId);
+        List<Arvostelu> arvostelut = arvosteluRepository.findByKahviId(kahviId); // Updated method call
         model.addAttribute("kahvi", kahvi);
         model.addAttribute("arvostelut", arvostelut);
         return "arvostelut";
